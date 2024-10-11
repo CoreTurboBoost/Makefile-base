@@ -1,3 +1,4 @@
+# Modify the following block for all projects.
 BINARY=./bin/program
 EXTRA_COPTS=
 SRCEXTS=.c
@@ -9,16 +10,18 @@ LINKOPTS=# General link options that don't begin with -l or -L, such as -shared
 DEFINES=EXAMPLE_DEFINE1=0 EXAMPLE_DEFINE2
 WORKDIR=.# EMPTY to not prepend a working directory to all file paths
 
-# Init default variable values, if they have no value set already.
-P_WORKDIR=$(if $(WORKDIR),$(WORKDIR)/,$(WORKDIR))
-
+# Modify the following block, only if needed.
 CC=gcc
 OPT=-O0
-SYMBOLS=-g #OR -s   to strip
+SYMBOLS=-g# OR -s   to strip
+
 # Generate files that encode make rules for the .h dependencies.
 DEPFLAGS=-MP -MD
 # Automatically add the -I onto each include directory
 COPTS=-Wall -Wextra $(SYMBOLS) $(EXTRA_COPTS) $(foreach D,$(INCDIRS),-I$(D)) $(OPT) $(DEPFLAGS)
+
+# Init default variable values, if they have no value set already.
+P_WORKDIR=$(if $(WORKDIR),$(WORKDIR)/,$(WORKDIR))
 
 # for-style iteration (foreach) and regular expression completions (wildcard)
 CFILES=$(foreach E,$(SRCEXTS),$(foreach D,$(CODEDIRS),$(wildcard $(P_WORKDIR)$(D)/*$(E))))
