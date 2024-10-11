@@ -1,7 +1,7 @@
 # Modify the following block for all projects.
 BINARY=./bin/program
 EXTRA_COPTS=
-SRCEXTS=.c
+SRCEXT=.c
 CODEDIRS=. src/
 INCDIRS=. include/
 LINKDIRS=. lib/
@@ -24,7 +24,7 @@ COPTS=-Wall -Wextra $(SYMBOLS) $(EXTRA_COPTS) $(foreach D,$(INCDIRS),-I$(D)) $(O
 P_WORKDIR=$(if $(WORKDIR),$(WORKDIR)/,$(WORKDIR))
 
 # for-style iteration (foreach) and regular expression completions (wildcard)
-CFILES=$(foreach E,$(SRCEXTS),$(foreach D,$(CODEDIRS),$(wildcard $(P_WORKDIR)$(D)/*$(E))))
+CFILES=$(foreach D,$(CODEDIRS),$(wildcard $(P_WORKDIR)$(D)/*$(SRCEXT)))
 P_LINKDIRS=$(foreach D,$(LINKDIRS),-L$(P_WORKDIR)$(D))
 P_LINKFILES=$(foreach F,$(LINKFILES),-l$(F))
 P_DEFINES=$(foreach D,$(DEFINES),-D$(D))
