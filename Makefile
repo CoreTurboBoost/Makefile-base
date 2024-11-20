@@ -30,17 +30,17 @@ P_LINKFILES=$(foreach F,$(LINKFILES),-l$(F))
 P_DEFINES=$(foreach D,$(DEFINES),-D$(D))
 
 # Regular expression replacement
-OBJECTS=$(patsubst %.c,%.o,$(CFILES))
-DEPFILES=$(patsubst %.c,%.d,$(CFILES))
+OBJECTS=$(patsubst %$(SRCEXT),%.o,$(CFILES))
+DEPFILES=$(patsubst %$(SRCEXT),%.d,$(CFILES))
 
 all: $(P_WORKDIR)$(BINARY)
 
 $(P_WORKDIR)$(BINARY): $(OBJECTS)
 	$(CC) -o $@ $^ $(P_LINKDIRS) $(LINKOPTS) $(P_LINKFILES)
 
-# Compilation of .c files.
-# Treat %.c as a list instead of a single string, thus $< instead of $^.
-%.o:%.c
+# Compilation of $(SRCEXT) files.
+# Treat %$(SRCEXT) as a list instead of a single string, thus $< instead of $^.
+%.o:%$(SRCEXT)
 	$(CC) $(COPTS) $(P_DEFINES) -c -o $@ $<
 
 clean:
