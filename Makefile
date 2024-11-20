@@ -13,7 +13,7 @@ WORKDIR=.# EMPTY to not prepend a working directory to all file paths
 # Modify the following block, only if needed.
 CC=gcc
 OPT=-O0
-SYMBOLS=-g# OR -s   to strip
+SYMBOLS=-g# OR -s   to strip debug symbols
 
 # Generate files that encode make rules for the .h dependencies.
 DEPFLAGS=-MP -MD
